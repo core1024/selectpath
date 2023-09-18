@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example usage of the selectPath jQuery plugin</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="selectpath.js"></script>
+		<script>
+			$(function() {
+				// By default the separator is '/'
+				$('select.basic').selectPath()
+
+				// The separator can be changed at runtime
+				$('select.advanced').selectPath({
+					// Use the last selected separator or ' > ' as default
+					separator: localStorage.getItem('select.advanced.lastSep') || ' > '
+				})
+				.on('change', function() {
+					if($(this).val().startsWith(' ')) {
+						$(this).selectPath('option', 'separator', $(this).val())
+						localStorage.setItem('select.advanced.lastSep', $(this).val())
+					}
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<h1>Example usage of the selectPath jQuery plugin</h1>
+		<p>Basic example</p>
+		<select class="basic">
+			<optgroup label="Group 1">
+				<option>Option 1</option>
+				<option>Option 2</option>
+			</optgroup>
+			<optgroup label="Group 2">
+				<option>Option 1</option>
+				<option>Option 2</option>
+			</optgroup>
+		</select>
+
+		<p>Advanced example (setting separator at runtime)</p>
+		<select class="advanced">
+			<option>Please select an option</option>
+			<optgroup label="Arrows">
+				<option value=" &rarr; ">Use '&rarr;' as separator</option>
+				<option value=" &Rarr; ">Use '&Rarr;' as separator</option>
+				<option value=" &rAarr; ">Use '&rAarr;' as separator</option>
+			</optgroup>
+			<optgroup label="Characters">
+				<option value=" > ">Use '>' as separator</option>
+				<option value=" / ">Use '/' as separator</option>
+				<option value=" * ">Use '*' as separator</option>
+			</optgroup>
+			<optgroup label="Use last selected separator">
+				<option value="happy">and be happy</option>
+				<option value="chill">and chill</option>
+				<option value="enjoy">and enjoy</option>
+			</optgroup>
+		</select>
+	</body>
+</html>
