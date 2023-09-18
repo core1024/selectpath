@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example usage of the selectPath jQuery plugin</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="selectpath.js"></script>
+		<script>
+			$(function() {
+				$('select').selectPath({ separator: ' > ' })
+			})
+		</script>
+	</head>
+	<body>
+		Example usage of the selectPath jQuery plugin
+		<select>
+			<optgroup label="example 1">
+				<option value="1">item 1</option>
+				<option value="2">item 2</option>
+			</optgroup>
+				<optgroup label="example 2">
+				<option value="3">item 3</option>
+				<option value="4">item 4</option>
+			</optgroup>
+		</select>
+	</body>
+</html>
